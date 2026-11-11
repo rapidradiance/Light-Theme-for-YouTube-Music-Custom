@@ -1,3 +1,29 @@
+/* ==UserStyle==
+@name           YTM LT Fixes + Theme
+@namespace      Rapid-Radiance
+@version        1.0.0
+@description    Fixes and custom theming for YTM light theme
+@author         Rapid Radiance
+
+@preprocessor   stylus
+@var    checkbox        ytmLMReplace        "Replace Liked Music Image"    1
+@var    text        ytmLikedUrl       "URL for liked music playlist image"     url("https://rapidradiance.github.io/Website/Content/main-pfp-vectorized-rapid.png")
+@var    checkbox        ytmLyricHide        "Hide Lyrics Tab (Enable when using the violentmonkey script)"    0
+@var    checkbox        ytmHideVideo        "Hide Video (Theme was made assuming this is true)"    1
+
+@var    checkbox        ytmPlayerGradiant        "Gradiant on Player Bar"    1
+@var    checkbox        ytmPlayerPageGradiant        "Gradiant on Player Page Background"    1
+
+@var    color       ytmToggle       "Toggle Color"      #6933ce
+@var    color       ytmToggleBg       "Toggle Background Color"      #9f3eff
+
+@var    color       ytmBar1       "Seek Bar Color 1"      #00CCFF
+@var    color       ytmBar2       "Seek Bar Color 2"      #7800FF
+
+@var    checkbox        fuckRounding        "Remove Rounded Corners (keep this enabled for intended look, theme is made assuming this is true turning it off may break some elements, or not do anything at all i never tested this option)"    1
+==/UserStyle== */
+
+
 @-moz-document url-prefix("https://music.youtube.com") {
 :root {
     --ytmusic-background: #fff !important;
@@ -5,42 +31,55 @@
     --yt-sys-color-baseline--static-magenta: #8126ff !important;
     --yt-sys-color-baseline--mono-tonal-hover: #0000004a !important;
     --ytm-text-invert:#000; 
-    --ytm-progress-primary: #8126ff !important;
+    --ytm-progress-primary: ytmBar2 !important;
 	--ytm-bg-app: #fff;
-    --ytm-bg-content: #fff;
+    --ytm-bg-content: #f9f9f9;
     --ytm-accent:  #8126ff;
     --ytm-accent-invert: #ba89ff;
-    --ytm-toggle: #6933ce;
-    --ytm-toggle-bg: #9f3eff;
+    --ytm-toggle: ytmToggle;
+    --ytm-toggle-bg: ytmToggleBg;
+}
+if fuckRounding {
+	* { border-radius: 0px !important; }
 }
 
+
 #primaryProgress.tp-yt-paper-progress {
-    background: #00CCFF;
-background: -moz-linear-gradient(left, #00CCFF 0%, #7800FF 100%);
-background: -webkit-linear-gradient(left, #00CCFF 0%, #7800FF 100%);
-background: linear-gradient(to right, #00CCFF 0%, #7800FF 100%);
+    background: ytmBar1;
+background: -moz-linear-gradient(left, ytmBar1 0%, ytmBar2 100%);
+background: -webkit-linear-gradient(left, ytmBar1 0%, ytmBar2 100%);
+background: linear-gradient(to right, ytmBar1 0%, ytmBar2 100%);
 }
 
 .volume-slider.ytmusic-player-bar {
     background: #fff0 !important;
 }
-
+if ytmPlayerGradiant {
 .ytMusicMiniPlayerHost.style-scope.ytmusic-app.ytMusicMiniPlayerIsCairoVotingAnimationEnabled,
 .ytmusic-player-bar {
     background: #C8C8C8;
 background: -moz-linear-gradient(top, #C8C8C8 0%, #F1F1F1 50%, #C8C8C8 100%);
 background: -webkit-linear-gradient(top, #C8C8C8 0%, #F1F1F1 50%, #C8C8C8 100%);
 background: linear-gradient(to bottom, #C8C8C8 0%, #F1F1F1 50%, #C8C8C8 100%);
-    
+}
 }
 
-div#main-panel {
+if ytmHideVideo {
+	div#main-panel {
     display: none !important;
 }
 div#side-panel {
     width: 100% !important;
     margin-left: 0%;
 }
+}
+
+if not ytmHideVideo {
+	#my-lyrics-panel {
+		display: none !important;
+	}
+}
+
 #mini-guide-background {
       background-color: #F4F4F4 !important;
 }
@@ -72,7 +111,7 @@ ytmusic-responsive-list-item-renderer.style-scope.ytmusic-carousel ytmusic-menu-
 
 ytmusic-guide-entry-renderer[play-button-state="playing"]:not([is-primary]) #play-button.ytmusic-guide-entry-renderer,
 ytmusic-guide-entry-renderer:not([is-primary]) #play-button.ytmusic-guide-entry-renderer{
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, .5);
 }
 
 
@@ -91,10 +130,20 @@ yt-formatted-string.monthly-listener.style-scope.ytmusic-immersive-header-render
 ytmusic-menu-renderer.menu.style-scope.ytmusic-two-row-item-renderer *{
  color: #fff !important;
 }
-
-ytmusic-player-page #side-panel tp-yt-paper-tab:nth-of-type(2) {
+if ytmLyricHide {
+	ytmusic-player-page #side-panel tp-yt-paper-tab:nth-of-type(2) {
   display: none !important;
 }
+}
+
+ytmusic-item-thumbnail-overlay-renderer > ytmusic-background-overlay-renderer {
+	display: none !important;
+}
+ytmusic-item-thumbnail-overlay-renderer > ytmusic-menu-renderer {
+	background-color: #4b4b4b63;
+}
+
+
 
 ytmusic-guide-entry-renderer:nth-of-type(4),
 ytmusic-mini-guide-renderer ytmusic-guide-entry-renderer:nth-of-type(4) {
@@ -126,14 +175,18 @@ tp-yt-iron-dropdown #sections yt-multi-page-menu-section-renderer:first-child yt
 ytmusic-menu-renderer *{
         color: #000;
 }
-
-img[src="https://www.gstatic.com/youtube/media/ytm/images/pbg/liked-songs-delhi-1200.png"],
+if ytmLMReplace {
+	img[src="https://www.gstatic.com/youtube/media/ytm/images/pbg/liked-songs-delhi-1200.png"],
 img[src="https://www.gstatic.com/youtube/media/ytm/images/pbg/liked-songs-delhi-576.png"]{
-	content: url("https://rapidradiance.github.io/Website/Content/main-pfp-vectorized-rapid.png");
+	content: ytmLikedUrl;
+}
+}
+#mini-guide-background {
+		background: #fff !important;
+	}
+
 }
 
-
-}
 
 @-moz-document url-prefix("https://music.youtube.com/@") {
 
@@ -158,12 +211,12 @@ ytmusic-app-layout#layout.style-scope.ytmusic-app div#content.style-scope.ytmusi
 @-moz-document url-prefix("https://music.youtube.com/watch") {
 ytmusic-nav-bar {
     background-color: #fff;
-
 }
-#player-page .content.style-scope.ytmusic-player-page,
+if ytmPlayerPageGradiant {
+	#player-page .content.style-scope.ytmusic-player-page,
 #mini-guide-renderer {
  border-color: #f000 !important;
-background: #FFFFFF;
+background: #fff;
 background: -moz-linear-gradient(top, #FFFFFF 0%, #E4E4E4 100%);
 background: -webkit-linear-gradient(top, #FFFFFF 0%, #E4E4E4 100%);
 background: linear-gradient(to bottom, #FFFFFF 0%, #E4E4E4 100%);
@@ -171,14 +224,24 @@ background: linear-gradient(to bottom, #FFFFFF 0%, #E4E4E4 100%);
 tp-yt-app-drawer *:not(#divider),
 #nav-bar-background,
 #mini-guide-background {
-    border-color: #b5b5b5 !important;
+    border-color: #b5b5b500 !important;
 }
+
+
 tp-yt-app-drawer #guide-content{
-    background: #FFFFFF;
+    background: #fff;
 background: -moz-linear-gradient(top, #FFFFFF 0%, #E4E4E4 100%);
 background: -webkit-linear-gradient(top, #FFFFFF 0%, #E4E4E4 100%);
 background: linear-gradient(to bottom, #FFFFFF 0%, #E4E4E4 100%);
 
 }
+}
+
+if not ytmPlayerPageGradiant {
+	#mini-guide-background {
+		background: #fff !important;
+	}
+}
+
 
 }

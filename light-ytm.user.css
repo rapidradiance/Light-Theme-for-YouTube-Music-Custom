@@ -23,10 +23,10 @@
 @var    checkbox        userYTMLyrics       "  Lyrics Redesign"       1
 @var    checkbox        userYTMQueueModern      "  Queue Redesign"       1
 @var    checkbox        userYTMCompactLB        "  Compact Right-click Menu"    1
-@var    checkbox    rootYTMAsthetic     "Asthetic Enhancements"     1
-@var    checkbox        userYTMAnimations       "  Animations"       1
-@var    checkbox        userYTMShadow           "  Shadowing"         1
-@var    checkbox        userYTMRound            "  Rounded Corners"           1
+@var    checkbox    rootYTMAsthetic     "Asthetic Enhancements"     0
+@var    checkbox        userYTMAnimations       "  Animations"       0
+@var    checkbox        userYTMShadow           "  Shadowing"         0
+@var    checkbox        userYTMRound            "  Rounded Corners"           0
 @var    checkbox        userYTMTextTransform    "  Normal Text Casing"        1
 @var    checkbox        userYTMHideScroll    "  Hide Scrollbars"      0
 @var    checkbox        userYTMShowScroll    "    Show On Hover"     0

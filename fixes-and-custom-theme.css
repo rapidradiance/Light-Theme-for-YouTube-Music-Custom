@@ -105,7 +105,8 @@ ytmusic-responsive-list-item-renderer.style-scope.ytmusic-carousel ytmusic-menu-
 .ytmusicTrackInfoTitle,
 .ytmusicTrackInfoByline,
 .ytSpecButtonShapeNextOverlay.ytSpecButtonShapeNextText,
-.ytMusicMiniPlayerRightSection *{
+.ytMusicMiniPlayerRightSection *,
+.style-scope.ytmusic-shelf-renderer span {
     color: #000 !important;
 }
 
@@ -197,7 +198,7 @@ ytmusic-app[guide-collapsed] .style-scope.ytmusic-app:not(.content-scrolled) > y
 
 
 .image.ytmusic-immersive-header-renderer ~ .content-container-wrapper.ytmusic-immersive-header-renderer .gradient-container.ytmusic-immersive-header-renderer {
-	background: linear-gradient(1turn,#f4f4f4,var(--ytmusic-static-clear-black) 100%)!important;
+	background: linear-gradient(1turn,#c9c9c9,var(--ytmusic-static-clear-black) 100%)!important;
 }
 
 ytmusic-app-layout#layout.style-scope.ytmusic-app div#content.style-scope.ytmusic-app ytmusic-browse-response#browse-page.style-scope.ytmusic-app div.background-gradient.style-scope.ytmusic-browse-response div#header.style-scope.ytmusic-browse-response ytmusic-immersive-header-renderer.style-scope.ytmusic-browse-response div.content-container-wrapper.style-scope.ytmusic-immersive-header-renderer div.gradient-container.style-scope.ytmusic-immersive-header-renderer *{

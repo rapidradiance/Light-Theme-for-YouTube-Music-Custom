@@ -7,6 +7,8 @@ there is also an [optional violentmonkey script](https://github.com/rapidradianc
 
 The theme also includes a couple options, incase you don't like some of what it does (like removing the video, or adding the gradients)
 
+there is also a dark mode version for anyone who wants it, it should ofc be installed **without** the light mode theme file
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/rapidradiance/Light-Theme-for-YouTube-Music-Custom/refs/heads/main/images/11%3A50%3A26-PM.png" />
   <img src="https://raw.githubusercontent.com/rapidradiance/Light-Theme-for-YouTube-Music-Custom/refs/heads/main/images/11%3A49%3A20-PM.png" />

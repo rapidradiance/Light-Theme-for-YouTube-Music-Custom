@@ -63,11 +63,12 @@
     lyricsTab.click();
 
     let text = '', source = '';
+    const shelf = 'ytmusic-description-shelf-renderer[is-track-lyrics-page]';
     for (let i = 0; i < 25 && !text; i++) {
       await sleep(200);
-      const el = document.querySelector('ytmusic-description-shelf-renderer yt-formatted-string.non-expandable');
+      const el = document.querySelector(shelf + ' yt-formatted-string.non-expandable');
       text = el ? (el.innerText || el.textContent).trim() : '';
-      const f = document.querySelector('ytmusic-description-shelf-renderer yt-formatted-string.footer');
+      const f = document.querySelector(shelf + ' yt-formatted-string.footer');
       source = f ? f.textContent.trim() : '';
     }
 

@@ -1,0 +1,156 @@
+/* ==UserStyle==
+@name           YTM Theme Darkmode
+@namespace      Rapid-Radiance
+@version        1.0.0
+@description    Fixes and custom theming for YTM light theme
+@author         Rapid Radiance
+
+@preprocessor   stylus
+@var    checkbox        ytmLMReplace        "Replace Liked Music Image"    1
+@var    text        ytmLikedUrl       "URL for liked music playlist image"     url("https://rapidradiance.github.io/Website/Content/main-pfp-vectorized-rapid.png")
+@var    checkbox        ytmLyricHide        "Hide Lyrics Tab (Enable when using the violentmonkey script)"    0
+@var    checkbox        ytmHideVideo        "Hide Video (Theme was made assuming this is true)"    1
+
+@var    checkbox        ytmPlayerGradiant        "Gradiant on Player Bar"    1
+@var    checkbox        ytmPlayerPageGradiant        "Gradiant on Player Page Background"    1
+
+@var    color       ytmToggle       "Toggle Color"      #6933ce
+@var    color       ytmToggleBg       "Toggle Background Color"      #9f3eff
+
+@var    color       ytmBar1       "Seek Bar Color 1"      #00CCFF
+@var    color       ytmBar2       "Seek Bar Color 2"      #7800FF
+
+@var    checkbox        fuckRounding        "Remove Rounded Corners (keep this enabled for intended look, theme is made assuming this is true turning it off may break some elements, or not do anything at all i never tested this option)"    1
+==/UserStyle== */
+
+
+@-moz-document url-prefix("https://music.youtube.com") {
+:root {
+    --yt-sys-color-baseline--static-brand-red: #74d8ff !important;
+    --yt-sys-color-baseline--static-magenta: #8126ff !important;
+    --yt-sys-color-baseline--mono-tonal-hover: #0000004a !important;
+    --ytm-progress-primary: ytmBar2 !important;
+    --ytm-accent:  #8126ff;
+    --ytm-accent-invert: #ba89ff;
+    --ytm-toggle: ytmToggle;
+    --ytm-toggle-bg: ytmToggleBg;
+}
+if fuckRounding {
+	* { border-radius: 0px !important; }
+}
+
+.slider-knob-inner.style-scope.tp-yt-paper-slider {
+	background-color: ytmBar2 !important;
+	border-color: ytmBar2 !important;
+}
+
+
+#primaryProgress.tp-yt-paper-progress {
+    background: ytmBar1;
+background: -moz-linear-gradient(left, ytmBar1 0%, ytmBar2 100%);
+background: -webkit-linear-gradient(left, ytmBar1 0%, ytmBar2 100%);
+background: linear-gradient(to right, ytmBar1 0%, ytmBar2 100%);
+}
+
+.volume-slider.ytmusic-player-bar {
+    background: #fff0 !important;
+}
+if ytmPlayerGradiant {
+.ytMusicMiniPlayerHost.style-scope.ytmusic-app.ytMusicMiniPlayerIsCairoVotingAnimationEnabled,
+.ytmusic-player-bar {
+    background: #C8C8C8;
+background: linear-gradient(to bottom, #8b8b8b 0%, #494949 50%, #8b8b8b 100%);
+}
+}
+
+if ytmHideVideo {
+	div#main-panel {
+    display: none !important;
+}
+div#side-panel {
+    width: 100% !important;
+    margin-left: 0%;
+}
+}
+
+if not ytmHideVideo {
+	#my-lyrics-panel {
+		display: none !important;
+	}
+}
+#my-lyrics-panel {
+	color: white !important;
+}
+	
+.ytmusic-player-bar *,
+ytmusic-player-bar[is-cairo-voting-animation-enabled] #progress-bar.ytmusic-player-bar {
+    background: #c8c8c800;
+}
+
+
+if ytmLyricHide {
+	ytmusic-player-page #side-panel tp-yt-paper-tab:nth-of-type(2) {
+  display: none !important;
+}
+}
+
+ytmusic-guide-entry-renderer:nth-of-type(4),
+ytmusic-mini-guide-renderer ytmusic-guide-entry-renderer:nth-of-type(4) {
+  display: none !important;
+}
+
+
+ytmusic-carousel-shelf-renderer:nth-of-type(3) {
+    display: none !important;
+}
+
+ytmusic-logo {
+    display: none;
+}
+/*
+.center-content.style-scope.ytmusic-nav-bar {
+    padding-left: 0px;
+}
+*/
+tp-yt-iron-dropdown #sections yt-multi-page-menu-section-renderer:first-child ytd-compact-link-renderer:nth-of-type(2) {
+    display:none;
+}
+
+if ytmLMReplace {
+	img[src="https://www.gstatic.com/youtube/media/ytm/images/pbg/liked-songs-delhi-1200.png"],
+img[src="https://www.gstatic.com/youtube/media/ytm/images/pbg/liked-songs-delhi-576.png"]{
+	content: ytmLikedUrl;
+}
+}
+}
+@-moz-document url-prefix("https://music.youtube.com/watch") {
+
+if ytmPlayerPageGradiant {
+	#player-page .content.style-scope.ytmusic-player-page,
+#mini-guide-renderer {
+ border-color: #f000 !important;
+background: #000;
+background: linear-gradient(to bottom, #000 0%, #575757 100%);
+}
+tp-yt-app-drawer *:not(#divider),
+#nav-bar-background,
+#mini-guide-background {
+    border-color: #b5b5b500 !important;
+}
+
+
+tp-yt-app-drawer #guide-content{
+    background: #000;
+background: linear-gradient(to bottom, #000 0%, #575757 100%);
+
+}
+}
+
+if not ytmPlayerPageGradiant {
+	#mini-guide-background {
+		background: #fff !important;
+	}
+}
+
+
+}
